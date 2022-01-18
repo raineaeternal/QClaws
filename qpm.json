@@ -1,0 +1,40 @@
+{
+  "sharedDir": "shared",
+  "dependenciesDir": "extern",
+  "info": {
+    "name": "QClaws",
+    "id": "Claws",
+    "version": "0.1.0",
+    "url": null,
+    "additionalData": {
+      "overrideSoName": "libClaws.so"
+    }
+  },
+  "dependencies": [
+    {
+      "id": "beatsaber-hook",
+      "versionRange": "=2.3.2",
+      "additionalData": {
+        "extraFiles": [
+          "src/inline-hook"
+        ]
+      }
+    },
+    {
+      "id": "modloader",
+      "versionRange": "^1.2.3",
+      "additionalData": {}
+    },
+    {
+      "id": "questui_components",
+      "versionRange": "^0.1.16",
+      "additionalData": {}
+    },
+    {
+      "id": "questui",
+      "versionRange": "^0.11.0",
+      "additionalData": {}
+    }
+  ],
+  "additionalData": {}
+}
