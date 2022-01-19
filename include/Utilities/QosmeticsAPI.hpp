@@ -1,0 +1,8 @@
+//
+// Created by Dawn on 1/19/2022.
+//
+
+#ifndef QCLAWS_QOSMETICSAPI_HPP
+#define QCLAWS_QOSMETICSAPI_HPP
+
+#endif //QCLAWS_QOSMETICSAPI_HPP

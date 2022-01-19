@@ -39,7 +39,7 @@ add_library(
         ${COMPILE_ID}
         SHARED
         ${cpp_file_list}
-        ${c_file_list} include/ViewController.hpp src/QUCPlaygroundViewController.cpp include/main.hpp)
+        ${c_file_list} include/main.hpp include/Utilities/ClawUtils.hpp src/Utilities/ClawUtils.cpp include/Enums/Devices.hpp include/Utilities/QosmeticsAPI.hpp)
 
 target_include_directories(${COMPILE_ID} PRIVATE .)
 
