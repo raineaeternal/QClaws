@@ -34,6 +34,11 @@
       "id": "custom-types",
       "versionRange": "^0.15.1",
       "additionalData": {}
+    },
+    {
+      "id": "qosmetics-api",
+      "versionRange": "^0.1.4",
+      "additionalData": {}
     }
   ],
   "additionalData": {}

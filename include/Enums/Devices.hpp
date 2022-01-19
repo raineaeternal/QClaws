@@ -1,11 +1,8 @@
-#ifndef QCLAWS_DEVICES_HPP
-#define QCLAWS_DEVICES_HPP
+#pragma once
 
 namespace Claws {
     enum class Devices{
-        Quest1 = 1,
-        Quest2 = 2
+        Quest1 = 0,
+        Quest2 = 1
     };
 }
-
-#endif //QCLAWS_DEVICES_HPP

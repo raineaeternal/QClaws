@@ -1,8 +1,4 @@
-//
-// Created by Dawn on 1/19/2022.
-//
+#pragma once
 
-#ifndef QCLAWS_QOSMETICSAPI_HPP
-#define QCLAWS_QOSMETICSAPI_HPP
+#include "extern/includes/qosmetics-api/shared/SaberAPI.hpp"
 
-#endif //QCLAWS_QOSMETICSAPI_HPP

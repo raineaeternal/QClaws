@@ -1,5 +1,8 @@
 #include "main.hpp"
 
+#include "Hooks/SaberHook.hpp"
+#include "Utilities/HookingUtility.hpp"
+
 static ModInfo modInfo; // Stores the ID and version of our mod, and is sent to the modloader upon startup
 
 // Loads the config from disk using our modInfo, then returns it for use
@@ -29,7 +32,7 @@ extern "C" void setup(ModInfo& info) {
 extern "C" void load() {
     il2cpp_functions::Init();
 
-    getLogger().info("Installing hooks...");
-    // Install our hooks (none defined yet)
+    getLogger().info("Installing Claws hooks...");
+    Claws::HookingUtility::InstallHooks(getLogger());
     getLogger().info("Installed all hooks!");
 }

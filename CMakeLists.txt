@@ -39,7 +39,7 @@ add_library(
         ${COMPILE_ID}
         SHARED
         ${cpp_file_list}
-        ${c_file_list} include/main.hpp include/Utilities/ClawUtils.hpp src/Utilities/ClawUtils.cpp include/Enums/Devices.hpp include/Utilities/QosmeticsAPI.hpp)
+        ${c_file_list} include/main.hpp include/Utilities/ClawUtils.hpp src/Utilities/ClawUtils.cpp include/Enums/Devices.hpp include/Utilities/QosmeticsAPI.hpp include/Utilities/HookingUtility.hpp src/Hooks/SaberHook.cpp include/Hooks/SaberHook.hpp)
 
 target_include_directories(${COMPILE_ID} PRIVATE .)
 
