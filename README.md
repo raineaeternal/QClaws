@@ -1,4 +1,4 @@
-# QuestUI-Playground
+# Quest Claws
 Port of Claws by Ruirize, which changes your sabers to 0.3 meters
 and alters grip to make play easier with the shortened sabers.
 
