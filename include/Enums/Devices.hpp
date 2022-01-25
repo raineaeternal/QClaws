@@ -16,10 +16,8 @@ namespace Claws {
             switch (OVRPlugin::GetSystemHeadsetType()) {
                 case OVRPlugin::SystemHeadset::Oculus_Quest_2:
                     return Devices::Quest2;
-                    break;
                 case OVRPlugin::SystemHeadset::Oculus_Quest:
                     return Devices::Quest1;
-                    break;
                 default:
                     return Devices::Unknown;
             }
