@@ -12,7 +12,8 @@
 
 #include "UnityEngine/Transform.hpp"
 
-MAKE_HOOK_MATCH(SaberModelContainer_Start, &GlobalNamespace::SaberModelContainer::Start, void, GlobalNamespace::SaberModelContainer* self) {
+MAKE_HOOK_MATCH(SaberModelContainer_Start, &GlobalNamespace::SaberModelContainer::Start,
+                void, GlobalNamespace::SaberModelContainer* self) {
     SaberModelContainer_Start(self);
 
     auto saber = self->dyn__saber();
@@ -30,6 +31,7 @@ MAKE_HOOK_MATCH(SaberModelContainer_Start, &GlobalNamespace::SaberModelContainer
     modelScale.x = 0.3;
 
     saberTop->set_localPosition(saberPos);
+    modelTop->set_localScale(modelScale);
     modelTop->set_localScale(modelScale);
 
     getLogger().info("length of model was: %.2f", modelScale.z);
