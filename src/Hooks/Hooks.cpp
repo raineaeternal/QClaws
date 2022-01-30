@@ -17,7 +17,7 @@ MAKE_HOOK_MATCH(SaberModelContainer_Start, &GlobalNamespace::SaberModelContainer
     SaberModelContainer_Start(self);
 
     auto saber = self->dyn__saber();
-    auto model = self->dyn__saberModelControllerPrefab();
+    auto model = self->GetComponent<GlobalNamespace::SaberModelController*>();
 
     auto saberTop = saber->dyn__saberBladeTopTransform();
     auto modelTop = model->get_transform();
@@ -27,14 +27,9 @@ MAKE_HOOK_MATCH(SaberModelContainer_Start, &GlobalNamespace::SaberModelContainer
 
     saberPos.z = 0.3;
     modelScale.z = 0.3;
-    modelScale.y = 0.3;
-    modelScale.x = 0.3;
 
     saberTop->set_localPosition(saberPos);
     modelTop->set_localScale(modelScale);
-    modelTop->set_localScale(modelScale);
-
-    getLogger().info("length of model was: %.2f", modelScale.z);
 }
 
 void InstallClawHooks(Logger& logger) {
