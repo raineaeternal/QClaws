@@ -3,6 +3,7 @@
 #include "GlobalNamespace/SaberModelController.hpp"
 #include "GlobalNamespace/Saber.hpp"
 #include "GlobalNamespace/GamePause.hpp"
+#include "GlobalNamespace/SaberTypeObject.hpp"
 
 #include "beatsaber-hook/shared/utils/hooking.hpp"
 #include "include/Utilities/HookingUtility.hpp"
@@ -30,6 +31,8 @@ MAKE_HOOK_MATCH(SaberModelContainer_Start, &GlobalNamespace::SaberModelContainer
 
     saberTop->set_localPosition(saberPos);
     modelTop->set_localScale(modelScale);
+
+    getLogger().info("hook saber %i model controller ptr %p", saber->dyn__saberType()->get_Value(), self);
 }
 
 void InstallClawHooks(Logger& logger) {
