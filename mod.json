@@ -5,13 +5,14 @@
   "author": "Raine",
   "version": "0.0.1",
   "packageId": "com.beatgames.beatsaber",
-  "packageVersion": "1.19.0",
-  "description": "Claws!",
+  "packageVersion": "1.20.0",
+  "description": "QClaws, version 0.0.1!",
+  "coverImage": "cover/cover.png",
   "dependencies": [
     {
       "version": "^0.15.1",
       "id": "custom-types",
-      "downloadIfMissing": "https://github.com/sc2ad/Il2CppQuestTypePatching/releases/download/v0.15.3/CustomTypes.qmod"
+      "downloadIfMissing": "https://github.com/sc2ad/Il2CppQuestTypePatching/releases/download/v0.15.8/CustomTypes.qmod"
     },
     {
       "version": "^0.18.2",
@@ -23,7 +24,7 @@
     "libClaws.so"
   ],
   "libraryFiles": [
-    "libbeatsaber-hook_3_6_2.so"
+    "libbeatsaber-hook_3_6_8.so"
   ],
   "fileCopies": [],
   "copyExtensions": []

@@ -39,6 +39,11 @@
       "id": "qosmetics-api",
       "versionRange": "^0.1.4",
       "additionalData": {}
+    },
+    {
+      "id": "config-utils",
+      "versionRange": "^0.7.2",
+      "additionalData": {}
     }
   ],
   "additionalData": {}

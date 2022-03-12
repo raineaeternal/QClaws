@@ -5,11 +5,16 @@
 #include "GlobalNamespace/GamePause.hpp"
 #include "GlobalNamespace/SaberTypeObject.hpp"
 
+#include "GlobalNamespace/OculusVRHelper.hpp"
+#include "GlobalNamespace/VRController.hpp"
+
 #include "beatsaber-hook/shared/utils/hooking.hpp"
 #include "include/Utilities/HookingUtility.hpp"
 #include "include/Utilities/ClawUtils.hpp"
 
 #include "include/main.hpp"
+#include "Enums/Devices.hpp"
+#include "Utilities/Config.hpp"
 
 #include "UnityEngine/Transform.hpp"
 
@@ -17,22 +22,32 @@ MAKE_HOOK_MATCH(SaberModelContainer_Start, &GlobalNamespace::SaberModelContainer
                 void, GlobalNamespace::SaberModelContainer* self) {
     SaberModelContainer_Start(self);
 
-    auto saber = self->dyn__saber();
-    auto model = self->GetComponent<GlobalNamespace::SaberModelController*>();
+    if (SaberModelContainer_Start == nullptr) return; {
+        auto saber = self->dyn__saber();
+        auto model = self->GetComponent<GlobalNamespace::SaberModelController*>();
 
-    auto saberTop = saber->dyn__saberBladeTopTransform();
-    auto modelTop = model->get_transform();
+        auto saberTop = saber->dyn__saberBladeTopTransform();
+        auto modelTop = model->get_transform();
 
-    auto saberPos = saberTop->get_localPosition();
-    auto modelScale = modelTop->get_localScale();
+        auto saberPos = saberTop->get_localPosition();
+        auto modelScale = modelTop->get_localScale();
 
-    saberPos.z = 0.3;
-    modelScale.z = 0.3;
+        saberPos.z = Claws::Utilities::Preference::length;
+        modelScale.z = Claws::Utilities::Preference::length;
 
-    saberTop->set_localPosition(saberPos);
-    modelTop->set_localScale(modelScale);
+        saberTop->set_localPosition(saberPos);
+        modelTop->set_localScale(modelScale);
+    }
+}
 
-    getLogger().info("hook saber %i model controller ptr %p", saber->dyn__saberType()->get_Value(), self);
+MAKE_HOOK_MATCH(ControllerTransform,
+                &OculusVRHelper::AdjustControllerTransform,
+                void, OculusVRHelper* self, XR::XRNode node,
+                Transform* transform, Vector3 position,
+                Vector3 rotation) {
+    if (node == UnityEngine::XR::XRNode::RightHand)
+        if (Claws::Utilities::Con)
+
 }
 
 void InstallClawHooks(Logger& logger) {

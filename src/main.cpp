@@ -33,7 +33,6 @@ extern "C" void setup(ModInfo& info) {
 extern "C" void load() {
     il2cpp_functions::Init();
 
-
     getLogger().info("Installing Claws hooks...");
     Claws::HookingUtility::InstallHooks(getLogger());
     getLogger().info("Installed all hooks!");

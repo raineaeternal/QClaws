@@ -3,17 +3,15 @@
 #include <map>
 #include "UnityEngine/Vector3.hpp"
 #include "Enums/Devices.hpp"
+#include "UnityEngine/XR/XRNode.hpp"
 
-
-namespace Claws {
+namespace Claws::Utilities {
     class Preference {
         public:
-            constexpr static const float length = 0.3f;     // Sets the length
-            constexpr static const float width = 0.3f;      // Sets the width
-            static UnityEngine::Vector3 leftRotation;       // Defines the left controller rotation
-            static UnityEngine::Vector3 rightRotation;      // Defines the right controller rotation
-            static UnityEngine::Vector3 leftTranslation;    //
-            static UnityEngine::Vector3 rightTranslation;
+            constexpr static const float length = 0.3f;         // Sets the length
+            constexpr static const float width = 0.3f;          // Sets the width
+            static UnityEngine::Vector3 mirroredRotation;       // Defines the mirrored controller rotation
+            static UnityEngine::Vector3 mirroredTranslation;    // Defines the mirrored controller translation
 
         std::map<Devices, UnityEngine::Vector3> DefaultTranslation = {
                 { Devices::Unknown, UnityEngine::Vector3() },

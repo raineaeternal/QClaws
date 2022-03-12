@@ -2,8 +2,8 @@
 
 #include "UnityEngine/Transform.hpp"
 
-namespace Claws {
+namespace Claws::Utilities {
     class ScalingUtils {
-        void SetSize(UnityEngine::Transform* transform);
+
     };
 }
