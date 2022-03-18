@@ -16,26 +16,29 @@
 #include "Utilities/Config.hpp"
 
 #include "UnityEngine/Transform.hpp"
+#include "UnityEngine/SceneManagement/Scene.hpp"
 
 MAKE_HOOK_MATCH(SaberModelContainer_Start, &GlobalNamespace::SaberModelContainer::Start,
                 void, GlobalNamespace::SaberModelContainer* self) {
     SaberModelContainer_Start(self);
 
     if (SaberModelContainer_Start == nullptr) return; {
-        auto saber = self->dyn__saber();
-        auto model = self->GetComponent<GlobalNamespace::SaberModelController*>();
+        if (UnityEngine::SceneManagement::Scene().get_name() == "GameCore") {
+            auto saber = self->dyn__saber();
+            auto model = self->GetComponent<GlobalNamespace::SaberModelController*>();
 
-        auto saberTop = saber->dyn__saberBladeTopTransform();
-        auto modelTop = model->get_transform();
+            auto saberTop = saber->dyn__saberBladeBottomTransform();
+            auto modelTop = model->get_gameObject()->get_transform();
 
-        auto saberPos = saberTop->get_localPosition();
-        auto modelScale = modelTop->get_localScale();
+            auto saberPos = saberTop->get_localPosition();
+            auto modelScale = modelTop->get_localScale();
 
-        saberPos.z = Claws::Utilities::ClawUtils::Preference::length;
-        modelScale.z = Claws::Utilities::ClawUtils::Preference::length;
+            saberPos.z = 0.3f;
+            modelScale.z = 0.3f;
 
-        saberTop->set_localPosition(saberPos);
-        modelTop->set_localScale(modelScale);
+            saberTop->set_localPosition(saberPos);
+            modelTop->set_localScale(modelScale);
+        }
     }
 }
 
@@ -51,7 +54,6 @@ MAKE_HOOK_MATCH(ControllerTransform,
                 Vector3 position,
                 Vector3 rotation) {
     if (!getClawsConfig().Enabled.GetValue()) {
-        getLogger().info("Enabled: %s", getClawsConfig().Enabled());
         return;
     }
 
