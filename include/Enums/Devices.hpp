@@ -12,6 +12,7 @@ namespace Claws {
 
     using namespace GlobalNamespace;
     class DevicesExtensions {
+      public:
         static Devices Headset() {
             switch (OVRPlugin::GetSystemHeadsetType()) {
                 case OVRPlugin::SystemHeadset::Oculus_Quest_2:
