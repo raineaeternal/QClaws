@@ -3,6 +3,8 @@
 #include "Utilities/HookingUtility.hpp"
 #include "include/Utilities/Config.hpp"
 #include "config-utils/shared/config-utils.hpp"
+#include "questui/shared/BeatSaberUI.hpp"
+#include "questui/shared/QuestUI.hpp"
 
 static ModInfo modInfo; // Stores the ID and version of our mod, and is sent to the modloader upon startup
 
@@ -34,10 +36,21 @@ extern "C" void setup(ModInfo& info) {
     getLogger().info("Completed setup!");
 }
 
+void DidActivate(HMUI::ViewController* self, bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling){
+    if(firstActivation) 
+    {
+        UnityEngine::GameObject* container = QuestUI::BeatSaberUI::CreateScrollableSettingsContainer(self->get_transform());
+
+        UnityEngine::UI::Toggle* isEnabled = AddConfigValueToggle(container->get_transform(), getClawsConfig().Enabled);
+        QuestUI::BeatSaberUI::AddHoverHint(isEnabled->get_gameObject(), "Claws innit");
+    }
+}
+
 // Called later on in the game loading - a good time to install function hooks
 extern "C" void load() {
     il2cpp_functions::Init();
-
+    QuestUI::Init();
+    QuestUI::Register::RegisterModSettingsViewController(modInfo, DidActivate);
 
     getLogger().info("Installing Claws hooks...");
     Claws::HookingUtility::InstallHooks(getLogger());
