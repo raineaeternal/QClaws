@@ -72,8 +72,8 @@ MAKE_HOOK_MATCH(ControllerTransform,
                 rotation = rotation + Mirror(ClawUtils::Preference::DefaultRotation[Claws::DevicesExtensions::Headset()], true);
             }
         }
-        ControllerTransform(self, node, transform, position, rotation);
     }
+    ControllerTransform(self, node, transform, position, rotation);
 } 
 
 void InstallClawHooks(Logger& logger) {
