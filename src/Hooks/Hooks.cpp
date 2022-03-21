@@ -28,7 +28,6 @@ MAKE_HOOK_MATCH(SaberModelContainer_Start, &SaberModelContainer::Start, void, Sa
     SaberModelContainer_Start(self);
     if (!getClawsConfig().Enabled.GetValue()) return;
     if (SceneManagement::SceneManager::GetActiveScene().get_name() == "GameCore") {
-        getLogger().info("knob 3");
         auto saber = self->dyn__saber();
         auto model = self->get_transform()->GetComponentInChildren<SaberModelController*>(); // the previous line of this was causing a null deref lol
 
@@ -46,7 +45,7 @@ MAKE_HOOK_MATCH(SaberModelContainer_Start, &SaberModelContainer::Start, void, Sa
     }
 }
 
-Vector3 Mirror(Vector3 toMirror, bool isRot){
+Vector3 Mirror(Vector3 toMirror, bool isRot) {
     return isRot ? Vector3(toMirror.x, -1 * toMirror.y, -1 * toMirror.z) : Vector3(-1 * toMirror.x, toMirror.y, toMirror.z);
 
 }
@@ -60,14 +59,14 @@ MAKE_HOOK_MATCH(ControllerTransform,
                 Vector3 position,
                 Vector3 rotation) {
     if (getClawsConfig().Enabled.GetValue()) {
-        if (node == XR::XRNode::RightHand){
-            if (transform->get_name() == "RightHand"){ //only applies to sabers while in level
+        if (node == XR::XRNode::RightHand) {
+            if (transform->get_name() == "RightHand") { //only applies to sabers while in level
                 position = position + ClawUtils::Preference::DefaultTranslation[Claws::DevicesExtensions::Headset()];
                 rotation = rotation + ClawUtils::Preference::DefaultRotation[Claws::DevicesExtensions::Headset()];
             }
         }
-        else if (node == XR::XRNode::LeftHand){
-            if (transform->get_name() == "LeftHand"){
+        else if (node == XR::XRNode::LeftHand) {
+            if (transform->get_name() == "LeftHand") {
                 position = position + Mirror(ClawUtils::Preference::DefaultTranslation[Claws::DevicesExtensions::Headset()], false);
                 rotation = rotation + Mirror(ClawUtils::Preference::DefaultRotation[Claws::DevicesExtensions::Headset()], true);
             }
