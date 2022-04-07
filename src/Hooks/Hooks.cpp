@@ -1,3 +1,6 @@
+#include "paper/shared/logger.hpp"
+#include "paper/shared/log_level.hpp"
+
 #include "GlobalNamespace/ConditionalMaterialSwitcher.hpp"
 #include "GlobalNamespace/SaberModelContainer.hpp"
 #include "GlobalNamespace/SaberModelController.hpp"
@@ -39,6 +42,10 @@ MAKE_HOOK_MATCH(SaberModelContainer_Start, &SaberModelContainer::Start, void, Sa
 
         saberPos.z = 0.3f;
         saberScale.z = 0.3f;
+        if (getClawsConfig().ThinSaber.GetValue()) {
+            saberPos.x = 0.3f;
+            saberPos.y = 0.3f;
+        }
         
         saberIdk->set_localScale(saberScale);
         saberTop->set_localPosition(saberPos);

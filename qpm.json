@@ -44,6 +44,16 @@
       "id": "questui",
       "versionRange": "^0.13.3",
       "additionalData": {}
+    },
+    {
+      "id": "paper",
+      "versionRange": "^1.0.5",
+      "additionalData": {}
+    },
+    {
+      "id": "questui_components",
+      "versionRange": "^2.5.0",
+      "additionalData": {}
     }
   ],
   "additionalData": {}

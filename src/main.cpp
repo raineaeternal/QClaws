@@ -1,5 +1,7 @@
 #include "main.hpp"
 
+#include "paper/shared/logger.hpp"
+
 #include "Utilities/HookingUtility.hpp"
 #include "include/Utilities/Config.hpp"
 #include "config-utils/shared/config-utils.hpp"
@@ -13,12 +15,6 @@ Configuration& getConfig() {
     static Configuration config(modInfo);
     config.Load();
     return config;
-}
-
-// Returns a logger, useful for printing debug messages
-Logger& getLogger() {
-    static Logger* logger = new Logger(modInfo);
-    return *logger;
 }
 
 DEFINE_CONFIG(ClawsConfig);
@@ -36,23 +32,19 @@ extern "C" void setup(ModInfo& info) {
     getLogger().info("Completed setup!");
 }
 
-void DidActivate(HMUI::ViewController* self, bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling){
-    if(firstActivation) 
-    {
-        UnityEngine::GameObject* container = QuestUI::BeatSaberUI::CreateScrollableSettingsContainer(self->get_transform());
 
-        UnityEngine::UI::Toggle* isEnabled = AddConfigValueToggle(container->get_transform(), getClawsConfig().Enabled);
-        QuestUI::BeatSaberUI::AddHoverHint(isEnabled->get_gameObject(), "Claws innit");
-    }
-}
 
 // Called later on in the game loading - a good time to install function hooks
 extern "C" void load() {
     il2cpp_functions::Init();
-    QuestUI::Init();
-    QuestUI::Register::RegisterModSettingsViewController(modInfo, DidActivate);
 
-    getLogger().info("Installing Claws hooks...");
+    if (!Paper::Logger::IsInited()) {
+        Paper::Logger::Init("/sdcard/Android/data/com.beatgames.beatsaber/files/logs");
+    }
+
+    QuestUI::Init();
+    QuestUI::Register::RegisterGameplaySetupMenu(modInfo, QuestUI::Register::MenuType::All, GameplaySettings);
+
     Claws::HookingUtility::InstallHooks(getLogger());
-    getLogger().info("Installed all hooks!");
+
 }
