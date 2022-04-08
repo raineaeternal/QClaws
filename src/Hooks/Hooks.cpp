@@ -32,13 +32,12 @@ MAKE_HOOK_MATCH(SaberModelContainer_Start, &SaberModelContainer::Start, void, Sa
     if (!getClawsConfig().Enabled.GetValue()) return;
     if (SceneManagement::SceneManager::GetActiveScene().get_name() == "GameCore") {
         auto saber = self->dyn__saber();
-        auto model = self->get_transform()->GetComponentInChildren<SaberModelController*>(); // the previous line of this was causing a null deref lol
+        auto model = self->get_transform(); // the previous line of this was causing a null deref lol
 
-        auto saberTop = saber->dyn__saberBladeBottomTransform();
-        auto saberIdk = model->dyn__saberTrail()->get_gameObject()->get_transform()->get_parent(); // dunno why this works but it moves both saber and trail
+        auto saberTop = saber->dyn__saberBladeBottomTransform();// dunno why this works but it moves both saber and trail
 
         auto saberPos = saberTop->get_localPosition();
-        auto saberScale = saberIdk->get_localScale();
+        auto saberScale = model->get_localScale();
 
         saberPos.z = 0.3f;
         saberScale.z = 0.3f;
@@ -47,7 +46,7 @@ MAKE_HOOK_MATCH(SaberModelContainer_Start, &SaberModelContainer::Start, void, Sa
             saberPos.y = 0.3f;
         }
         
-        saberIdk->set_localScale(saberScale);
+        model->set_localScale(saberScale);
         saberTop->set_localPosition(saberPos);
     }
 }
