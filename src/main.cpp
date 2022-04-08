@@ -2,6 +2,8 @@
 
 #include "paper/shared/logger.hpp"
 
+#include "Utilities/GameplaySettingsViewController.hpp"
+
 #include "Utilities/HookingUtility.hpp"
 #include "include/Utilities/Config.hpp"
 #include "config-utils/shared/config-utils.hpp"
@@ -43,7 +45,7 @@ extern "C" void load() {
     }
 
     QuestUI::Init();
-    QuestUI::Register::RegisterGameplaySetupMenu(modInfo, QuestUI::Register::MenuType::All, GameplaySettings);
+    QuestUI::Register::RegisterGameplaySetupMenu(modInfo, QuestUI::Register::MenuType::All, DidActivate);
 
     Claws::HookingUtility::InstallHooks(getLogger());
 
